@@ -6,8 +6,8 @@
 export const SITE = {
   name: 'RocStars DJ Academy',
   tagline: "Master the Art of DJing — Powered by Serato",
-  location: 'Port-of-Spain, Trinidad & Tobago',
-  email: 'hello@rocstarsdj.com',
+  location: '#19 Eastern Main Road, Arouca, Trinidad & Tobago',
+  email: 'Roc.stars8@gmail.com',
   phone: '+1 (868) 000-0000',
   whatsapp: 'https://wa.me/18680000000',
   socials: {
@@ -47,6 +47,23 @@ export const IMAGES = {
     'https://d8j0ntlcm91z4.cloudfront.net/user_3DB0PgahDSDamK07Br1W0UHkhnT/hf_20260517_151804_206fa27c-b868-4e0f-a4bd-a685293ff0c0.png',
 };
 
+// Image slot identifier (a key of IMAGES).
+export type MediaKey = keyof typeof IMAGES;
+
+// The photos available to pick from in the admin media manager.
+// Add new entries here whenever new files land in /public/images.
+export const AVAILABLE_IMAGES: { path: string; label: string }[] = [
+  { path: '/images/hero-night-set.jpg', label: 'Night set — cinematic blue/green' },
+  { path: '/images/dj-mixing-focus.jpg', label: 'Mixing — hands on the gear' },
+  { path: '/images/dj-outdoor-set.jpg', label: 'Outdoor set — palms' },
+  { path: '/images/rocstars-booth.jpg', label: 'RocStars branded booth (DJ Wilo)' },
+  { path: '/images/dj-night-portrait.jpg', label: 'Night portrait — vertical' },
+  { path: '/images/dj-carnival.jpg', label: 'Carnival wall — smiling' },
+  { path: '/images/dj-boat-crew.jpg', label: 'Boat ride with crew' },
+  { path: '/images/dj-turntables.jpg', label: 'On the turntables — indoor' },
+  { path: '/images/dj-icon-cutout.jpg', label: 'ICON tee — white-background cutout' },
+];
+
 // ============================================================
 //  COURSES
 // ============================================================
@@ -85,7 +102,7 @@ export const COURSES: Course[] = [
     durationWeeks: 6,
     perWeek: 2,
     schedule: 'Sat & Tue',
-    priceTTD: 1950,
+    priceTTD: 2500,
     seatsLabel: '12 seats left',
   },
   {
@@ -108,7 +125,7 @@ export const COURSES: Course[] = [
     durationWeeks: 8,
     perWeek: 2,
     schedule: 'Mon & Thu',
-    priceTTD: 2800,
+    priceTTD: 3000,
     seatsLabel: 'Most popular',
     popular: true,
   },
@@ -147,6 +164,7 @@ export type Instructor = {
   badge: string;
   bio: string;
   image: string;
+  imageKey: MediaKey; // which IMAGES slot drives this photo (admin-editable)
 };
 
 export const INSTRUCTORS: Instructor[] = [
@@ -156,6 +174,7 @@ export const INSTRUCTORS: Instructor[] = [
     badge: 'Head of Faculty',
     bio: '11 years on the decks. Specialises in club performance and crowd reads. Trained 80+ students who now hold residencies across T&T.',
     image: IMAGES.instructorMJ,
+    imageKey: 'instructorMJ',
   },
   {
     name: 'Anaya "DJ Nya" Pierre',
@@ -163,6 +182,7 @@ export const INSTRUCTORS: Instructor[] = [
     badge: 'Carnival Specialist',
     bio: '7 years across the Carnival circuit. Specialist in soca, dancehall, and high-energy set design. Hennessy Artistry alum.',
     image: IMAGES.instructorNya,
+    imageKey: 'instructorNya',
   },
   {
     name: 'Devon "Selectah D" Charles',
@@ -170,6 +190,7 @@ export const INSTRUCTORS: Instructor[] = [
     badge: 'Festival Headliner',
     bio: '14 years headlining festivals across the Caribbean and South America. Leads the advanced performance and stagecraft modules.',
     image: IMAGES.instructorDevon,
+    imageKey: 'instructorDevon',
   },
 ];
 
@@ -338,12 +359,30 @@ export const WHY = [
 // ============================================================
 //  GALLERY TILES
 // ============================================================
-export const GALLERY = [
-  { img: IMAGES.galleryBooth, cap: 'Live at the Booth', size: 'wide' as const },
-  { img: IMAGES.galleryCarnival, cap: 'Carnival Energy' },
-  { img: IMAGES.galleryBoat, cap: 'Boat Ride Vibes' },
-  { img: IMAGES.galleryTurntables, cap: 'On the Decks' },
-  { img: IMAGES.festival, cap: 'Outdoor Sets' },
+// Each tile references an IMAGES slot by key, so the admin media manager can
+// swap the photo without touching code. `key` must be a MediaKey.
+export const GALLERY_SLOTS: { key: MediaKey; cap: string; size?: 'wide' }[] = [
+  { key: 'galleryBooth', cap: 'Live at the Booth', size: 'wide' },
+  { key: 'galleryCarnival', cap: 'Carnival Energy' },
+  { key: 'galleryBoat', cap: 'Boat Ride Vibes' },
+  { key: 'galleryTurntables', cap: 'On the Decks' },
+  { key: 'festival', cap: 'Outdoor Sets' },
+];
+
+// Drives the admin media picker: every editable image slot on the site,
+// grouped for a clean UI. `key` maps to IMAGES; the label is human-friendly.
+export const MEDIA_SLOTS: { key: MediaKey; label: string; group: string }[] = [
+  { key: 'heroBooth', label: 'Hero background (homepage top)', group: 'Main sections' },
+  { key: 'equipment', label: 'Studio / equipment photo', group: 'Main sections' },
+  { key: 'about', label: 'About section photo', group: 'Main sections' },
+  { key: 'festival', label: 'Enrol banner + "Outdoor Sets" gallery tile', group: 'Main sections' },
+  { key: 'galleryBooth', label: 'Gallery — wide tile ("Live at the Booth")', group: 'Gallery' },
+  { key: 'galleryCarnival', label: 'Gallery — "Carnival Energy"', group: 'Gallery' },
+  { key: 'galleryBoat', label: 'Gallery — "Boat Ride Vibes"', group: 'Gallery' },
+  { key: 'galleryTurntables', label: 'Gallery — "On the Decks"', group: 'Gallery' },
+  { key: 'instructorMJ', label: `Instructor 1 — ${INSTRUCTORS[0].name}`, group: 'Instructor cards' },
+  { key: 'instructorNya', label: `Instructor 2 — ${INSTRUCTORS[1].name}`, group: 'Instructor cards' },
+  { key: 'instructorDevon', label: `Instructor 3 — ${INSTRUCTORS[2].name}`, group: 'Instructor cards' },
 ];
 
 // ============================================================

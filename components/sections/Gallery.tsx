@@ -1,11 +1,15 @@
+'use client';
+
 import Image from 'next/image';
 import Container from '@/components/ui/Container';
 import Section from '@/components/ui/Section';
 import SectionHead from '@/components/ui/SectionHead';
 import Reveal from '@/components/ui/Reveal';
-import { GALLERY } from '@/lib/data';
+import { GALLERY_SLOTS } from '@/lib/data';
+import { useImages } from '@/lib/content';
 
 export default function Gallery() {
+  const images = useImages();
   return (
     <Section id="gallery" style={{ background: 'linear-gradient(180deg,#06060B,#08080F)' }}>
       <Container>
@@ -16,7 +20,7 @@ export default function Gallery() {
         />
         <Reveal>
           <div className="grid md:grid-cols-3 grid-rows-2 gap-3.5 md:h-[560px]">
-            {GALLERY.map((g, i) => (
+            {GALLERY_SLOTS.map((g, i) => (
               <div
                 key={i}
                 className={[
@@ -25,7 +29,7 @@ export default function Gallery() {
                 ].join(' ')}
               >
                 <Image
-                  src={g.img}
+                  src={images[g.key]}
                   alt={g.cap}
                   fill
                   sizes="(max-width:768px) 100vw, 33vw"

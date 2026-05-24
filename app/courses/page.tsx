@@ -10,7 +10,7 @@ import { SITE } from '@/lib/data';
 
 export const metadata: Metadata = {
   title: `Courses — ${SITE.name}`,
-  description: "Beginner, Intermediate, and Expert DJ courses taught on Serato DJ Pro at our Port-of-Spain studio.",
+  description: "Beginner, Intermediate, and Expert DJ courses taught on Serato DJ Pro at our Arouca studio.",
 };
 
 export default function CoursesPage() {

@@ -1,10 +1,13 @@
+'use client';
+
 import Image from 'next/image';
 import Container from '@/components/ui/Container';
 import Section from '@/components/ui/Section';
 import Reveal from '@/components/ui/Reveal';
-import { IMAGES } from '@/lib/data';
+import { useImages } from '@/lib/content';
 
 export default function About() {
+  const images = useImages();
   return (
     <Section id="about" style={{ background: 'linear-gradient(180deg,#08080F,#06060B)' }}>
       <Container>
@@ -12,7 +15,7 @@ export default function About() {
           <Reveal>
             <div className="relative rounded-xl overflow-hidden border border-line aspect-[4/5] bg-[#0A0A14]">
               <Image
-                src={IMAGES.about}
+                src={images.about}
                 alt="A RocStars DJ working a live set"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"

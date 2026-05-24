@@ -6,10 +6,11 @@ import Container from '@/components/ui/Container';
 import Section from '@/components/ui/Section';
 import Button from '@/components/ui/Button';
 import Reveal from '@/components/ui/Reveal';
-import { COURSES } from '@/lib/data';
+import { useCourses } from '@/lib/content';
 import { submitEnrolment } from '@/lib/forms';
 
 export default function EnrolPage() {
+  const COURSES = useCourses();
   const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const successRef = useRef<HTMLDivElement>(null);

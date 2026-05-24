@@ -3,6 +3,7 @@ import './globals.css';
 import Nav from '@/components/layout/Nav';
 import Footer from '@/components/layout/Footer';
 import WhatsAppFab from '@/components/layout/WhatsAppFab';
+import { SiteContentProvider } from '@/lib/content';
 import { SITE } from '@/lib/data';
 
 export const metadata: Metadata = {
@@ -24,10 +25,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="font-sans bg-ink text-text">
-        <Nav />
-        {children}
-        <Footer />
-        <WhatsAppFab />
+        <SiteContentProvider>
+          <Nav />
+          {children}
+          <Footer />
+          <WhatsAppFab />
+        </SiteContentProvider>
       </body>
     </html>
   );

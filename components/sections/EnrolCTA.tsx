@@ -5,9 +5,10 @@ import Container from '@/components/ui/Container';
 import Section from '@/components/ui/Section';
 import Reveal from '@/components/ui/Reveal';
 import Button from '@/components/ui/Button';
-import { IMAGES } from '@/lib/data';
+import { useImages } from '@/lib/content';
 
 export default function EnrolCTA() {
+  const images = useImages();
   const [submitted, setSubmitted] = useState(false);
 
   return (
@@ -16,7 +17,7 @@ export default function EnrolCTA() {
         <Reveal>
           <div
             className="relative rounded-xl overflow-hidden py-24 px-8 md:px-16 text-center isolate"
-            style={{ backgroundImage: `url(${IMAGES.festival})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+            style={{ backgroundImage: `url(${images.festival})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
           >
             <div
               className="absolute inset-0 -z-[1]"

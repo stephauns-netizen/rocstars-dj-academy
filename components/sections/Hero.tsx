@@ -1,14 +1,17 @@
+'use client';
+
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
-import { IMAGES } from '@/lib/data';
+import { useImages } from '@/lib/content';
 
 export default function Hero() {
+  const images = useImages();
   return (
     <header
       id="top"
       className="relative min-h-screen pt-36 pb-24 overflow-hidden isolate"
       style={{
-        backgroundImage: `url(${IMAGES.heroBooth})`,
+        backgroundImage: `url(${images.heroBooth})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}

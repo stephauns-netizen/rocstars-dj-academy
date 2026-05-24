@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Container from '@/components/ui/Container';
 import Section from '@/components/ui/Section';
@@ -5,8 +7,10 @@ import SectionHead from '@/components/ui/SectionHead';
 import Reveal from '@/components/ui/Reveal';
 import Button from '@/components/ui/Button';
 import { INSTRUCTORS } from '@/lib/data';
+import { useImages } from '@/lib/content';
 
 export default function Instructors() {
+  const images = useImages();
   return (
     <Section id="instructors">
       <Container>
@@ -20,7 +24,7 @@ export default function Instructors() {
             <Reveal key={p.name} delay={i * 0.08}>
               <div className="group relative rounded-lg overflow-hidden border border-line bg-[#0A0A12] aspect-[4/5] cursor-pointer">
                 <Image
-                  src={p.image}
+                  src={images[p.imageKey]}
                   alt={p.name}
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"

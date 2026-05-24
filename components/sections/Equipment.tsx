@@ -1,9 +1,11 @@
+'use client';
+
 import Image from 'next/image';
 import Container from '@/components/ui/Container';
 import Section from '@/components/ui/Section';
 import Reveal from '@/components/ui/Reveal';
 import Button from '@/components/ui/Button';
-import { IMAGES } from '@/lib/data';
+import { useImages } from '@/lib/content';
 
 const FEATURES = [
   '3× Pioneer CDJ-3000 setups, DJM-900NXS2 mixers',
@@ -14,6 +16,7 @@ const FEATURES = [
 ];
 
 export default function Equipment() {
+  const images = useImages();
   return (
     <Section style={{ background: '#070710' }}>
       <Container>
@@ -21,7 +24,7 @@ export default function Equipment() {
           <Reveal>
             <div className="relative rounded-xl overflow-hidden border border-line">
               <Image
-                src={IMAGES.equipment}
+                src={images.equipment}
                 alt="Pioneer DJ Equipment"
                 width={2400}
                 height={1792}

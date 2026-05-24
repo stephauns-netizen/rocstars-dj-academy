@@ -1,18 +1,21 @@
+'use client';
+
 import Container from '@/components/ui/Container';
 import Section from '@/components/ui/Section';
 import SectionHead from '@/components/ui/SectionHead';
 import Reveal from '@/components/ui/Reveal';
 import Button from '@/components/ui/Button';
-import { COURSES } from '@/lib/data';
+import { useCourses } from '@/lib/content';
 
 export default function Courses() {
+  const COURSES = useCourses();
   return (
     <Section id="courses" style={{ background: 'linear-gradient(180deg,#06060B,#08080F)' }}>
       <Container>
         <SectionHead
           eyebrow="The Programmes"
           title={<>Three levels.<br /><span className="gradient-text">One clear path.</span></>}
-          body="Beginner to Expert. Every course taught in-person at our Port-of-Spain studio, using industry-standard Serato DJ Pro and the same gear you'll find in working clubs."
+          body="Beginner to Expert. Every course taught in-person at our Arouca studio, using industry-standard Serato DJ Pro and the same gear you'll find in working clubs."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

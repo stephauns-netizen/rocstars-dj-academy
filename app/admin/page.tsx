@@ -140,7 +140,13 @@ export default function AdminDashboard() {
               Signed in as <span className="text-white">{user.email}</span>
             </p>
           </div>
-          <div className="flex gap-3 items-center">
+          <div className="flex gap-3 items-center flex-wrap">
+            <Button href="/admin/courses" variant="ghost" arrow={false}>
+              Edit prices
+            </Button>
+            <Button href="/admin/media" variant="ghost" arrow={false}>
+              Edit photos
+            </Button>
             <Button onClick={load} variant="ghost" arrow={false}>
               {refreshing ? 'Refreshing…' : 'Refresh'}
             </Button>
