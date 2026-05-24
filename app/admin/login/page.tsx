@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { signIn, useAuth } from '@/lib/auth';
+import { signIn, resetPassword, useAuth } from '@/lib/auth';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 
@@ -12,6 +12,7 @@ export default function AdminLoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [notice, setNotice] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
   // If already signed in, jump to dashboard
@@ -36,6 +37,28 @@ export default function AdminLoginPage() {
           : (err as Error)?.message || 'Sign-in failed.';
       setError(friendly);
       setSubmitting(false);
+    }
+  };
+
+  const onReset = async () => {
+    setError('');
+    setNotice('');
+    if (!email) {
+      setError('Enter your email above first, then tap "Forgot password?"');
+      return;
+    }
+    try {
+      await resetPassword(email);
+      setNotice(`Reset link sent to ${email}. Check your inbox (and spam) to set a new password.`);
+    } catch (err) {
+      const code = (err as { code?: string })?.code;
+      setError(
+        code === 'auth/invalid-email'
+          ? 'That email doesn’t look right.'
+          : code === 'auth/too-many-requests'
+          ? 'Too many attempts. Wait a minute and try again.'
+          : (err as Error)?.message || 'Could not send reset email.'
+      );
     }
   };
 
@@ -80,10 +103,24 @@ export default function AdminLoginPage() {
                 {error}
               </div>
             )}
+            {notice && (
+              <div className="text-sm text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded px-3 py-2.5">
+                {notice}
+              </div>
+            )}
 
-            <Button type="submit" className="mt-2 self-start">
-              {submitting ? 'Signing in…' : 'Sign in'}
-            </Button>
+            <div className="flex items-center justify-between gap-4 mt-2">
+              <Button type="submit">
+                {submitting ? 'Signing in…' : 'Sign in'}
+              </Button>
+              <button
+                type="button"
+                onClick={onReset}
+                className="text-[13px] text-text-mute hover:text-white underline underline-offset-4 transition-colors"
+              >
+                Forgot password?
+              </button>
+            </div>
           </form>
         </div>
       </Container>
