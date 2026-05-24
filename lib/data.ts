@@ -16,19 +16,29 @@ export const SITE = {
     youtube: '#',
     whatsapp: 'https://wa.me/18680000000',
   },
-  logo: '/logo.jpg',
+  logo: '/logo.png',
 };
 
 // ============================================================
-//  HERO IMAGE CDN URLs — replace with /public images for production
+//  IMAGES — real RocStars photos served from /public/images
+//  (instructor slots still use AI renders until real headshots
+//   + bios are finalised — see INSTRUCTORS below)
 // ============================================================
 export const IMAGES = {
-  heroBooth:
-    'https://d8j0ntlcm91z4.cloudfront.net/user_3DB0PgahDSDamK07Br1W0UHkhnT/hf_20260517_151609_0448d909-867d-4f26-9661-ef05bd706df7.png',
-  equipment:
-    'https://d8j0ntlcm91z4.cloudfront.net/user_3DB0PgahDSDamK07Br1W0UHkhnT/hf_20260517_151614_6f52c0e6-522d-4acf-a2fa-c50c641c22db.png',
-  festival:
-    'https://d8j0ntlcm91z4.cloudfront.net/user_3DB0PgahDSDamK07Br1W0UHkhnT/hf_20260517_151625_3c4f2f49-177d-44bd-8b7e-880792dac5cf.png',
+  // Real photos
+  heroBooth: '/images/hero-night-set.jpg', // cinematic blue-lit night set
+  equipment: '/images/dj-mixing-focus.jpg', // hands on the gear, focused mix
+  festival: '/images/dj-outdoor-set.jpg', // outdoor Pioneer set, tropical
+  about: '/images/dj-night-portrait.jpg', // portrait shot — fits the About 4:5 frame
+  iconCutout: '/images/dj-icon-cutout.jpg', // ICON-tee cutout (reserved for future use)
+
+  // Gallery photos
+  galleryBooth: '/images/rocstars-booth.jpg', // KW DJ Wilo at the branded RocStars booth
+  galleryCarnival: '/images/dj-carnival.jpg',
+  galleryBoat: '/images/dj-boat-crew.jpg',
+  galleryTurntables: '/images/dj-turntables.jpg',
+
+  // Instructor renders — placeholders until real names/photos are set
   instructorMJ:
     'https://d8j0ntlcm91z4.cloudfront.net/user_3DB0PgahDSDamK07Br1W0UHkhnT/hf_20260517_151620_6f9b1154-1503-4abe-8560-bae5c27fc157.png',
   instructorNya:
@@ -329,11 +339,11 @@ export const WHY = [
 //  GALLERY TILES
 // ============================================================
 export const GALLERY = [
-  { img: IMAGES.heroBooth, cap: 'Live Booth · Cohort 11', size: 'wide' as const },
-  { img: IMAGES.equipment, cap: 'The Rig' },
-  { img: IMAGES.instructorNya, cap: 'Faculty Spotlight' },
-  { img: IMAGES.festival, cap: 'Showcase Night' },
-  { img: IMAGES.instructorDevon, cap: 'Mentor Hours' },
+  { img: IMAGES.galleryBooth, cap: 'Live at the Booth', size: 'wide' as const },
+  { img: IMAGES.galleryCarnival, cap: 'Carnival Energy' },
+  { img: IMAGES.galleryBoat, cap: 'Boat Ride Vibes' },
+  { img: IMAGES.galleryTurntables, cap: 'On the Decks' },
+  { img: IMAGES.festival, cap: 'Outdoor Sets' },
 ];
 
 // ============================================================

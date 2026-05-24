@@ -40,7 +40,7 @@ export default function Nav() {
           <Image
             src={SITE.logo}
             alt={SITE.name}
-            width={360}
+            width={176}
             height={88}
             priority
             className="h-20 md:h-[88px] w-auto logo-blend"

@@ -12,8 +12,8 @@ export default function About() {
           <Reveal>
             <div className="relative rounded-xl overflow-hidden border border-line aspect-[4/5] bg-[#0A0A14]">
               <Image
-                src={IMAGES.instructorMJ}
-                alt="RocStars Academy"
+                src={IMAGES.about}
+                alt="A RocStars DJ working a live set"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"

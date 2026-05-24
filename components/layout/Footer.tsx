@@ -45,8 +45,8 @@ export default function Footer() {
             <Image
               src={SITE.logo}
               alt={SITE.name}
-              width={440}
-              height={104}
+              width={193}
+              height={96}
               className="h-24 w-auto mb-4 logo-blend"
             />
             <p className="text-text-mute text-sm leading-relaxed max-w-xs">

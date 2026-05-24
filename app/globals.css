@@ -36,5 +36,18 @@ body { font-family: 'Inter', system-ui, sans-serif }
 .faq summary::-webkit-details-marker { display: none }
 .faq summary { list-style: none }
 
-/* logo blend so JPG black bg drops out on dark page */
-.logo-blend { mix-blend-mode: screen; filter: drop-shadow(0 0 18px rgba(168,85,247,.3)) }
+/* transparent-PNG logo: glow hugs the letterforms, grounded with a soft shadow */
+.logo-blend {
+  filter:
+    drop-shadow(0 1px 1px rgba(0,0,0,.45))
+    drop-shadow(0 0 1px rgba(0,0,0,.35))
+    drop-shadow(0 0 22px rgba(168,85,247,.28))
+    drop-shadow(0 0 40px rgba(0,102,255,.14));
+  transition: filter .3s ease;
+}
+.logo-blend:hover {
+  filter:
+    drop-shadow(0 1px 1px rgba(0,0,0,.45))
+    drop-shadow(0 0 24px rgba(168,85,247,.40))
+    drop-shadow(0 0 48px rgba(0,229,255,.20));
+}
